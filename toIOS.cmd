@@ -1,5 +1,5 @@
 @echo off
-set FROMWINDOWS=C:\Users\Dave\Dropbox\notes\fromWindows.txt
+set FROMWINDOWS=%USERPROFILE%\Dropbox\notes\fromWindows.txt
 set CMD=%*
 
 call %CMD%
