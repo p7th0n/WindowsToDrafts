@@ -28,18 +28,22 @@ if ( response.statusCode != 200 ) {
     context.fail();
 } else {
     let p = Prompt.create();
-    p.title = "Pick a file";
+    p.title = "Dropbox files";
     let fileList = response.responseData.entries;
     Object.keys( fileList ).forEach( function( key ) {
         p.addButton( fileList[ key ].name );
         // save as a draft from file
+        let filePath = folder + fileList[ key ].name
+        alert(filePath);
         var d = Draft.create();
         var fileContents = db.read(filePath);
+        alert(fileContents);
 
         d.content = fileContents;
         d.update();
 
         // delete file when done
+        
         let deleteArgs = {
             'path': folder + fileList[ key ].name
         }
@@ -48,6 +52,7 @@ if ( response.statusCode != 200 ) {
             'method': 'POST',
             'data': deleteArgs
         })
+        
     } );
     let didSelect = p.show();
     if ( didSelect ) {
