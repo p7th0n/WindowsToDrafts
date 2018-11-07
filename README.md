@@ -28,3 +28,8 @@ d.content = fileContents;
 d.update();
 
 ```
+
+## Version 2
+
+* [Dropbox v2 /list_folder](https://www.dropbox.com/developers/documentation/http/documentation#files-list_folder)
+* [Dropbox v2 /delete](https://www.dropbox.com/developers/documentation/http/documentation#files-delete)
