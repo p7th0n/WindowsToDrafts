@@ -1,14 +1,20 @@
 # From Windows to Drafts App
 
-## Purpose
+## Getting Started
 
+* Like the tagline says, where text starts. It is such a handy app and concept. But I spend a lot of time in Windows.
 * Get content from Windows into Drafts App
-* Develop a process to create Drafts with content from existing files.  This is useful with the iOS Workflow/Shortcuts app.  iOS Shortcuts are easy to automate with Siri voice commands.
+* Get Windows command line output to Drafts. Wrapper scripts take commands and redirect output to a Dropbox file, overwriting previous content.
+
+## Ideas
+
+* Develop a process to create Drafts with content from existing files.  This is useful with the iOS Workflow/Shortcuts app too.  And iOS Shortcuts are easy to automate with Siri voice commands.
+* Instead of using one file, use a single purpose folder. Drafts checks all files. When the Drafts action imports the draft it will erase the content. The Windows wrapper will delete files with no content.
 
 ## Problems
 
-* DOS file formats (CR/LF)
-* Drafts App is iOS and macOS beta only
+* DOS file formats (CR/LF). I use a dos2unix function in the PowerShell profile to fix file format issues.
+* Drafts App is iOS and macOS beta only.
 
 ```javascript
 /*  
