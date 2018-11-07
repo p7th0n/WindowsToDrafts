@@ -1,7 +1,8 @@
 ﻿// List Dropbox Files in Folder
 // https://forums.getdrafts.com/t/examples-of-use-of-new-dropbox-integration/2572
 
-// var folder = draft.processTemplate("[[safe_title]]");
+let msg = '';
+let msgCount = 0;
 var folder = '/drafts/';
 var deleteEndpoint = 'https://api.dropboxapi.com/2/files/delete_v2';
 
@@ -27,23 +28,21 @@ if ( response.statusCode != 200 ) {
     console.log( "Dropbox Error: " + response.statusCode + ", " + response.error );
     context.fail();
 } else {
-    let p = Prompt.create();
-    p.title = "Dropbox files";
+    msg = "Import Dropbox files to Drafts...\n";
     let fileList = response.responseData.entries;
     Object.keys( fileList ).forEach( function( key ) {
-        p.addButton( fileList[ key ].name );
+
         // save as a draft from file
         let filePath = folder + fileList[ key ].name
-        alert(filePath);
+        msg += '* ' + fileList[ key ].name + '\n';
         var d = Draft.create();
         var fileContents = db.read(filePath);
-        alert(fileContents);
 
         d.content = fileContents;
         d.update();
+        msgCount += 1;
 
         // delete file when done
-        
         let deleteArgs = {
             'path': folder + fileList[ key ].name
         }
@@ -52,10 +51,10 @@ if ( response.statusCode != 200 ) {
             'method': 'POST',
             'data': deleteArgs
         })
-        
-    } );
-    let didSelect = p.show();
-    if ( didSelect ) {
-        //
+    });
+    if (msgCount > 0) {
+        alert(msg);
+    } else {
+        alert(msg + '\nNo files found!');
     }
 }
