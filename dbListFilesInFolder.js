@@ -3,6 +3,7 @@
 
 // var folder = draft.processTemplate("[[safe_title]]");
 var folder = '/drafts/';
+var deleteEndpoint = 'https://api.dropboxapi.com/2/files/delete_v2';
 
 // create Dropbox object and vars
 let db = Dropbox.create();
@@ -31,11 +32,25 @@ if ( response.statusCode != 200 ) {
     let fileList = response.responseData.entries;
     Object.keys( fileList ).forEach( function( key ) {
         p.addButton( fileList[ key ].name );
+        // save as a draft from file
+        var d = Draft.create();
+        var fileContents = db.read(filePath);
+
+        d.content = fileContents;
+        d.update();
+
+        // delete file when done
+        let deleteArgs = {
+            'path': folder + fileList[ key ].name
+        }
+        let deleteResponse = db.rpcRequest( {
+            'url': deleteEndpoint,
+            'method': 'POST',
+            'data': deleteArgs
+        })
     } );
     let didSelect = p.show();
     if ( didSelect ) {
-        editor.setSelectedText( "![](" + p.buttonPressed + ")" );
-        let selectionRange = editor.getSelectedRange();
-        editor.setSelectedRange( editor.getSelectedRange()[ 0 ] + 2, 0 );
+        //
     }
 }
