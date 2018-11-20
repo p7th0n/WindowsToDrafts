@@ -5,6 +5,8 @@
 //
 // Dropbox is used to pipe text _Drafts_ from Windows or Linux
 // to the Drafts app on iOS.
+//
+// https://github.com/p7th0n/WindowsToDrafts
 
 let msg = '';
 let fileCount = 0;
