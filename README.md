@@ -6,7 +6,7 @@
 * Get content from Windows into Drafts App
 * Get Windows command line output to Drafts. Wrapper scripts take commands and redirect output to a Dropbox file, overwriting previous content.
 * Copy the content from _DropboxToDrafts.js_ to a Drafts action.
-* Or import from the Drafts Actions directory.
+* Or import from the [Drafts Actions](https://actions.getdrafts.com/a/1Qq) directory.
 
 ## Ideas
 
