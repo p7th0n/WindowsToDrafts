@@ -41,8 +41,10 @@ if ( response.statusCode != 200 ) {
         // Get Dropbox file content
         let fileName = dbDraftsList[ key ].name
         let filePath = folder + fileName
-        msg += '* ' + fileName + '\n';
         var fileContents = db.read(filePath);
+        var draftTitle = fileContents.slice(0, fileContents.indexOf('\n'));
+        msg += '* ' + draftTitle + '\n';
+
         // TODO: check for errors reading content like Windows/DOS line endings [CR-LF]
 
         // Create a new Draft for each Dropbox file
